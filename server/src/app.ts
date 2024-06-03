@@ -1,7 +1,10 @@
 import express from "express";
 import connectDB from "./config/db";
 import errorMiddleware from "./middlewares/errorMiddleware";
-import userRoutes from "./routes/user/userRoutes";
+import User from "./routes/user";
+import Todo from "./routes/todo";
+import Staff from "./routes/staff";
+import Rights from "./routes/rights";
 
 const app = express();
 
@@ -11,8 +14,10 @@ const initializeApp = async () => {
     app.use(express.json());
 
     //user routes
-    app.use("/api/users", userRoutes);
-
+    app.use("/api/users", User);
+    app.use("/api/staff", Staff);
+    app.use("/api/rights", Rights);
+    app.use("/api/todo", Todo);
     app.use("*", (req: any, res: any, error: any) => {
       return res.status(404).json({
         data: null,

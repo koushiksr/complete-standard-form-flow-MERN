@@ -1,20 +1,21 @@
 import { NextFunction, Request, Response } from "express";
-import User from "../../models/user/userModel";
-import Inv from "../../models/inv/invModel";
-
+import User from "../../models/user/user";
+import Inv from "../../models/invoice/invoice";
+// import { usersInterface } from "../../models/user/userInterface";
 export const registerUser = async (
   req: Request,
   res: Response,
   next: NextFunction
 ): Promise<void> => {
   try {
-    const lastUser = await User.findOne().sort({ userId: -1 });
+    const lastUser = await User.findOne().sort({
+      userId: -1,
+    });
     const newUserId = lastUser ? lastUser.userId + 1 : 1;
     const user = new User({ ...req.body, userId: newUserId });
     await user.save();
     res.status(201).send(user);
   } catch (error: any) {
-    console.error("Error:", error);
     next(error);
   }
 };
@@ -24,7 +25,7 @@ export const postInv = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const lastUser = await Inv.findOne().sort({ invId: -1 });
+    const lastUser: any = await Inv.findOne().sort({ invId: -1 });
     const newinvId = lastUser ? lastUser.invId + 1 : 1;
     const inv = new Inv({ ...req.body, invId: newinvId });
     await inv.save();

@@ -1,23 +1,5 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-// Define interface for Invoice document
-export interface Invoice extends Document {
-  invoiceNumber: string;
-  invoiceDate: Date;
-  dueDate: Date;
-  customerName: string;
-  unitPrice: number;
-  quantity: number;
-  cgst: number;
-  sgst: number;
-  igst: number;
-  totalTax: number;
-  totalPrice: number;
-  totalAmount: number;
-  invId: number;
-}
-
-// Define Mongoose schema for Invoice
 const invoiceSchema: Schema = new Schema({
   invoiceNumber: {
     type: String,
@@ -81,5 +63,4 @@ const invoiceSchema: Schema = new Schema({
   },
 });
 
-// Create and export Mongoose model for Invoice
-export default mongoose.model<Invoice>("Inv", invoiceSchema);
+export default mongoose.model("Inv", invoiceSchema);
