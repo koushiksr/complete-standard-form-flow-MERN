@@ -64,7 +64,7 @@ const MyForm = () => {
           console.log("Response from server:", response.data);
           if (response.data) {
             setSubmitting(false);
-            // resetForm();
+            resetForm();
           }
         } catch (error) {
           console.error("Error:", error);
