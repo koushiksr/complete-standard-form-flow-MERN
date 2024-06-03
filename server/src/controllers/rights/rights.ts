@@ -11,6 +11,7 @@ export const createRights: RequestHandler = async (req, res, next) => {
     next(error);
   }
 };
+
 export const populateRights: RequestHandler = async (req, res, next) => {
   try {
     const right = await Rights.find({ _id: req.body.right_id }).populate(
