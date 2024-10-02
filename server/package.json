@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "NODE_ENV=production nodemon --exec ts-node src/server.ts",
+    "docker:build": "docker build -t my-node-app .",
+    "docker:run": "docker run -p 3000:3000 my-node-app",
+    "start": "NODE_ENV=production node dist/server.js",
     "dev": "NODE_ENV=development nodemon --exec ts-node src/server.ts"
   },
   "keywords": [],
